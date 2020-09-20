@@ -3,7 +3,6 @@ public class Grafo {
 
     public Grafo(int[][] matrizAdj) {
         this.setGrafo(matrizAdj);
-        ;
     }
 
     public void printMatrizAdj() {
