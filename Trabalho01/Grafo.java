@@ -36,6 +36,10 @@ public class Grafo {
     }
 
     public void setGrafo(int[][] matrizAdj) {
-        this.matrizAdj = matrizAdj;
+        if (matrizAdj.length != matrizAdj[0].length) {
+            throw new IllegalArgumentException("Matriz informada não é adjunta");
+        } else {
+            this.matrizAdj = matrizAdj;
+        }
     }
 }
