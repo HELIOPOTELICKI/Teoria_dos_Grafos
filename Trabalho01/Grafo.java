@@ -20,7 +20,47 @@ public class Grafo {
     }
 
     public String tipoDoGrafo() {
-        return "not implemented dude";
+        String retorno = "";
+        boolean diag = false;
+        boolean maior = false;
+        int contDiag = 0;
+        int contMaior = 0;
+        int contDirig = 0;
+
+        for (int l = 0; l < matrizAdj.length; l++) {
+            for (int c = 0; c < matrizAdj[0].length; c++) {
+                if (matrizAdj[l][c] < 2) {
+                    contMaior++;
+                }
+                if (matrizAdj[l][c] == matrizAdj[c][l]) {
+                    contDirig++;
+                }
+            }
+            if (matrizAdj[l][l] == 0) {
+                contDiag++;
+            }
+        }
+
+        contDirig -= contDiag;
+
+        if (contDirig == (tamanhoMatriz() - matrizAdj.length)) {
+            retorno += "Grafo dirigido, ";
+        } else {
+            retorno += "Grafo não dirigido, ";
+        }
+        if (contDiag == matrizAdj.length) {
+            diag = true;
+        }
+        if (contMaior == tamanhoMatriz()) {
+            maior = true;
+        }
+
+        if (diag && maior) {
+            retorno += "Simples";
+        } else {
+            retorno += "Multigrafo";
+        }
+        return retorno;
     }
 
     public String arestasDoGrafo() {
@@ -29,6 +69,10 @@ public class Grafo {
 
     public String grausDoVertice() {
         return "not implemented dude";
+    }
+
+    private int tamanhoMatriz() {
+        return (matrizAdj.length * matrizAdj[0].length);
     }
 
     public int[][] getGrafo() {
