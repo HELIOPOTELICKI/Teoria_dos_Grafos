@@ -12,9 +12,9 @@ public class Grafo {
         for (int i = 0; i < matrizAdj.length; i++) {
             for (int j = 0; j < matrizAdj[0].length; j++) {
                 if (j == 0) {
-                    System.out.printf("| %s |", this.matrizAdj[i][j]);
+                    System.out.printf("| %s |", matrizAdj[i][j]);
                 } else {
-                    System.out.printf(" %s |", this.matrizAdj[i][j]);
+                    System.out.printf(" %s |", matrizAdj[i][j]);
                 }
             }
             System.out.println(" ");
@@ -92,15 +92,17 @@ public class Grafo {
     }
 
     public String arestasDoGrafo() {
+        int[][] matrizAUX = new int[matrizAdj.length][matrizAdj.length];
+        getGrafo(matrizAdj, matrizAUX);
         int contAresta = 0;
         String arestaConect = "";
-        for (int l = 0; l < matrizAdj.length; l++) {
-            for (int c = l; c < matrizAdj.length; c++) {
-                int aux = matrizAdj[l][c];
+        for (int l = 0; l < matrizAUX.length; l++) {
+            for (int c = l; c < matrizAUX.length; c++) {
+                int aux = matrizAUX[l][c];
                 if (aux != 0) {
                     contAresta++;
                     arestaConect += String.format("%s - %s; ", getAlphabet(l), getAlphabet(c));
-                    matrizAdj[c][l] = 0;
+                    matrizAUX[c][l] = 0;
                 }
             }
         }
@@ -108,15 +110,36 @@ public class Grafo {
     }
 
     public String grausDoVertice() {
-        return "not implemented dude";
+        String queue = "Sequencia de graus: ";
+        String gV = "";
+        for (int l = 0; l < matrizAdj.length; l++) {
+            int grau = 0;
+            for (int c = 0; c < matrizAdj.length; c++) {
+                grau += matrizAdj[l][c];
+            }
+
+            gV += String.format("V%s=%s grau=%s; ", l + 1, getAlphabet(l), grau);
+
+            if (l == matrizAdj.length - 1) {
+                queue += String.format("%s.", grau);
+            } else {
+                queue += String.format("%s, ", grau);
+            }
+        }
+        return gV + queue;
     }
 
     private int tamanhoMatriz() {
         return (matrizAdj.length * matrizAdj[0].length);
     }
 
-    public int[][] getGrafo() {
-        return matrizAdj;
+    public int[][] getGrafo(int[][] matrizAdj, int[][] matrizAUX) {
+        for (int i = 0; i < matrizAdj.length; i++) {
+            for (int j = 0; j < matrizAdj.length; j++) {
+                matrizAUX[i][j] = matrizAdj[i][j];
+            }
+        }
+        return matrizAUX;
     }
 
     public void setGrafo(int[][] matrizAdj) {
