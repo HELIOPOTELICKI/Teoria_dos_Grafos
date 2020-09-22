@@ -23,7 +23,7 @@ public class Grafo {
         String retorno = "";
         boolean diag = false;
         boolean maior = false;
-        boolean regular = false;
+        boolean regular = true;
         int contDiag = 0;
         int contMaior = 0;
         int contDirig = 0;
@@ -48,7 +48,7 @@ public class Grafo {
             if (matrizAdj[l][l] == 0) {
                 contDiag++;
             }
-            if (l >= 1 && l != somaLinhas.length) {
+            if (l >= 1 && l != somaLinhas.length && regular) {
                 if (somaLinhas[l] == somaLinhas[l - 1]) {
                     regular = true;
                 } else {
