@@ -1,5 +1,7 @@
 public class Grafo {
     private int[][] matrizAdj;
+    private String alphabet[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+            "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
     public Grafo(int[][] matrizAdj) {
         this.setGrafo(matrizAdj);
@@ -90,7 +92,19 @@ public class Grafo {
     }
 
     public String arestasDoGrafo() {
-        return "not implemented dude";
+        int contAresta = 0;
+        String arestaConect = "";
+        for (int l = 0; l < matrizAdj.length; l++) {
+            for (int c = l; c < matrizAdj.length; c++) {
+                int aux = matrizAdj[l][c];
+                if (aux != 0) {
+                    contAresta++;
+                    arestaConect += String.format("%s - %s; ", getAlphabet(l), getAlphabet(c));
+                    matrizAdj[c][l] = 0;
+                }
+            }
+        }
+        return String.format("%s arestas: %s", contAresta, arestaConect);
     }
 
     public String grausDoVertice() {
@@ -112,4 +126,9 @@ public class Grafo {
             this.matrizAdj = matrizAdj;
         }
     }
+
+    public String getAlphabet(int pos) {
+        return alphabet[pos];
+    }
+
 }
