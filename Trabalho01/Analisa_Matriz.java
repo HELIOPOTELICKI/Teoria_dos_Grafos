@@ -41,6 +41,7 @@ public class Analisa_Matriz {
         // Teste 04
         int[][] matrizAdj4 = { { 0, 1, 0 }, { 1, 0, 1 }, { 0, 1, 0 }, { 0, 1, 0 } };
         try {
+            @SuppressWarnings("unused")
             Grafo grafo4 = new Grafo(matrizAdj4);
         } catch (IllegalArgumentException e) {
             System.out.println("\n" + e.toString());
