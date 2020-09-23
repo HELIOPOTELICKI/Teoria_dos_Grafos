@@ -62,9 +62,9 @@ public class Grafo {
         contDirig -= matrizAdj.length;
 
         if (contDirig == (tamanhoMatriz() - matrizAdj.length)) {
-            retorno += "Grafo não dirigido, ";
+            retorno += "Grafo não dirigido";
         } else {
-            retorno += "Grafo dirigido, ";
+            retorno += "Grafo dirigido";
         }
         if (contDiag == matrizAdj.length) {
             diag = true;
@@ -73,20 +73,20 @@ public class Grafo {
             maior = true;
         }
         if (diag && maior) {
-            retorno += "Simples, ";
+            retorno += ", Simples";
         } else {
-            retorno += "Multigrafo, ";
+            retorno += ", Multigrafo";
         }
         if (regular) {
-            retorno += "regular, ";
+            retorno += ", regular";
         } else {
-            retorno += "não regular, ";
+            retorno += ", não regular";
         }
         if (contNulo == tamanhoMatriz()) {
-            retorno += "nulo";
+            retorno += ", nulo";
         }
         if (contNulo == 0) {
-            retorno += "completo";
+            retorno += ", completo";
         }
         return retorno;
     }
@@ -115,13 +115,17 @@ public class Grafo {
         for (int l = 0; l < matrizAdj.length; l++) {
             int grau = 0;
             for (int c = 0; c < matrizAdj.length; c++) {
-                grau += matrizAdj[l][c];
+                if (l == c && matrizAdj[l][c] != 0) {
+                    grau += matrizAdj[l][c] * 2;
+                } else {
+                    grau += matrizAdj[l][c];
+                }
             }
 
             gV += String.format("V%s=%s grau=%s; ", l + 1, getAlphabet(l), grau);
 
             if (l == matrizAdj.length - 1) {
-                queue += String.format("%s.", grau);
+                queue += String.format("%s.\n", grau);
             } else {
                 queue += String.format("%s, ", grau);
             }
