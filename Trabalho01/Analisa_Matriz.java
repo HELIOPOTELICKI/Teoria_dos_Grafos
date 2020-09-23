@@ -30,8 +30,8 @@ public class Analisa_Matriz {
         System.out.printf(grafo2.grausDoVertice());
 
         // Teste 03
-        int[][] matrizAdj3 = { { 2, 1, 1, 3, 1 }, { 1, 3, 1, 0, 1 }, { 1, 1, 2, 3, 1 }, { 1, 1, 2, 0, 1 },
-                { 1, 3, 1, 3, 1 } };
+        int[][] matrizAdj3 = { { 0, 1, 1, 3, 1 }, { 1, 0, 1, 1, 1 }, { 1, 1, 0, 3, 1 }, { 1, 1, 2, 0, 1 },
+                { 1, 3, 1, 3, 0 } };
         Grafo grafo3 = new Grafo(matrizAdj3);
         grafo3.printMatrizAdj();
         System.out.printf("\nTipo: %s \n", grafo3.tipoDoGrafo());

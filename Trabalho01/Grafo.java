@@ -85,7 +85,7 @@ public class Grafo {
         if (contNulo == tamanhoMatriz()) {
             retorno += ", nulo";
         }
-        if (contNulo == 0) {
+        if (contDiag == matrizAdj.length && contNulo == matrizAdj.length) {
             retorno += ", completo";
         }
         return retorno;
